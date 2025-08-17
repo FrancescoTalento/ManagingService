@@ -19,10 +19,135 @@ namespace Services
         private readonly List<Person> _personList;
         private readonly ICountriesService _countriesService;
 
-        public PersonService()
+        public PersonService(bool initialize = true)
         {
             _personList = new List<Person>();
             _countriesService = new CountryService();
+            if (initialize) 
+            {
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("6222957a-189c-44fd-b974-0d279ab9bd17"),
+                    PersonID = Guid.Parse("dc46c146-cbc9-4179-a399-bc2c4fe060e1"),
+                    PersonName = "Zilvia",
+                    Email = "zwickett0@networksolutions.com",
+                    DateOfBirth = new DateTime(1924, 10, 20),
+                    Gender = "Female",
+                    Address = "7 Express Parkway",
+                    ReceiveNewsLetters = true
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("a0f9a66f-0896-4f88-aaac-3d43e031f281"),
+                    PersonID = Guid.Parse("8213238f-e4cb-4665-8c45-a4882f0cf02c"),
+                    PersonName = "Rachele",
+                    Email = "rprophet1@aboutads.info",
+                    DateOfBirth = new DateTime(1934, 9, 9),
+                    Gender = "Female",
+                    Address = "5699 Redwing Cente",
+                    ReceiveNewsLetters = true
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("17df7fd8-3645-4e59-96ce-44aba5919808"),
+                    PersonID = Guid.Parse("5bee9ceb-3b03-40fe-a19e-5fd39f17a1e9"),
+                    PersonName = "Filippo",
+                    Email = "fditch0@networkadvertising.org",
+                    DateOfBirth = new DateTime(1902,01,09),
+                    Gender = "Male",
+                    Address = "891 Center Lane",
+                    ReceiveNewsLetters = true
+                });
+                this._personList.Add(
+                    new Person
+                    {
+                        CountryID = Guid.Parse("ad852a33-4100-4d4d-83a9-73c26308355d"),
+                        PersonID = Guid.Parse("a9935e54-4149-452d-8fb3-9c14dc7a8042"),
+                        PersonName = "Cullan",
+                        Email = "cfurley2@time.com",
+                        DateOfBirth = new DateTime(1951, 3, 15),
+                        Gender = "Male",
+                        Address = "793 Columbus Park",
+                        ReceiveNewsLetters = true
+                    });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("bd930371-8859-44ce-9f27-b1729fd48b09"),
+                    PersonID = Guid.Parse("70faccfc-be73-4799-b8ee-f036548321d1"),
+                    PersonName = "Anthiathia",
+                    Email = "aliddle3@yahoo.co.jp",
+                    DateOfBirth = new DateTime(1936, 7, 10),
+                    Gender = "Female",
+                    Address = "05 Hansons Way",
+                    ReceiveNewsLetters = true
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("ffca6bfd-6748-41ea-9625-b8c5dc9d546e"),
+                    PersonID = Guid.Parse("c931f977-f5c7-43e7-93ff-affb5a75737f"),
+                    PersonName = "Jenna",
+                    Email = "jvlasov4@ca.gov",
+                    DateOfBirth = new DateTime(1972, 3, 6),
+                    Gender = "Female",
+                    Address = "83585 Cherokee Parkway\t",
+                    ReceiveNewsLetters = false
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("bd930371-8859-44ce-9f27-b1729fd48b09"),
+                    PersonID = Guid.Parse("ec18002f-a7ab-4e3b-a8dd-7ca175ed1e71"),
+                    PersonName = "Garner",
+                    Email = "gbeaze5@mac.com",
+                    DateOfBirth = new DateTime(1933, 10, 18),
+                    Gender = "Male",
+                    Address = "37601 Del Mar Road",
+                    ReceiveNewsLetters = false
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("17df7fd8-3645-4e59-96ce-44aba5919808"),
+                    PersonID = Guid.Parse("1818cc28-e03d-4156-a957-f602b7e44b5c"),
+                    PersonName = "Fransisco",
+                    Email = "fshowering6@ning.com",
+                    DateOfBirth = new DateTime(1913, 2, 7),
+                    Gender = "Male",
+                    Address = "017 Wayridge Trail",
+                    ReceiveNewsLetters = true
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("ffca6bfd-6748-41ea-9625-b8c5dc9d546e"),
+                    PersonID = Guid.Parse("42736b10-e140-42b1-b50b-da2e788c8eeb"),
+                    PersonName = "Caryl",
+                    Email = "cfitzjohn7@omniture.com",
+                    DateOfBirth = new DateTime(1912, 8, 28),
+                    Gender = "Male",
+                    Address = "017 Wayridge Trail",
+                    ReceiveNewsLetters = true
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("a0f9a66f-0896-4f88-aaac-3d43e031f281"),
+                    PersonID = Guid.Parse("2a43f521-267b-4e9d-b12c-a788b6851586"),
+                    PersonName = "Ester",
+                    Email = "emcgarrity8@timesonline.co.uk",
+                    DateOfBirth = new DateTime(1959, 7, 24),
+                    Gender = "Female",
+                    Address = "85 Columbus Junction",
+                    ReceiveNewsLetters = true
+                });
+                this._personList.Add(new Person
+                {
+                    CountryID = Guid.Parse("ad852a33-4100-4d4d-83a9-73c26308355d"),
+                    PersonID = Guid.Parse("c249ff24-1035-46b3-95a5-83f8bc9e8521"),
+                    PersonName = "Josselyn",
+                    Email = "jswan9@exblog.jp",
+                    DateOfBirth = new DateTime(1985, 6, 8),
+                    Gender = "Female",
+                    Address = "1646 Jenifer Court",
+                    ReceiveNewsLetters = true
+                });
+            };
         }
 
         public PersonResponse AddEntity(PersonAddRequest? request)
@@ -34,9 +159,9 @@ namespace Services
             this._personList.Add(personToAdd);
 
             
-            string? countryName = this._countriesService.GetEntityById(request.CountryID)?.CountryName;
+            CountryResponse? countryRelated = this._countriesService.GetEntityById(request.CountryID);
 
-            return personToAdd.ToResponse(countryName);
+            return personToAdd.ToResponse(countryRelated);
         }
 
 
@@ -45,8 +170,8 @@ namespace Services
             List<PersonResponse> personResponses = new List<PersonResponse>();
             foreach (var item in _personList)
             {
-                string? countryName = this._countriesService.GetEntityById(item.CountryID)?.CountryName;
-                personResponses.Add(item.ToResponse(countryName));
+                CountryResponse? countryRelated = this._countriesService.GetEntityById(item.CountryID);
+                personResponses.Add(item.ToResponse(countryRelated));
             }
             return personResponses;
         }

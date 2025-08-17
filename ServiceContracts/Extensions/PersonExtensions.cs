@@ -1,4 +1,5 @@
 ﻿using Entities;
+using ServiceContracts.DTO.Country;
 using ServiceContracts.DTO.Person;
 using ServiceContracts.Enums;
 using System;
@@ -53,15 +54,14 @@ namespace ServiceContracts.Extensions
         }
 
 
-        public static PersonResponse? ToResponse(this Person? person, string? CountryName = null)
+        public static PersonResponse? ToResponse(this Person? person, CountryResponse? country = null)
         {
             if (person is null) return null;
-            if (string.IsNullOrEmpty(CountryName))
+            if (country is null)
             {
                 return new PersonResponse()
                 {
                     Address = person.Address,
-                    CountryID = person.CountryID,
                     DateOfBirth = person.DateOfBirth,
                     Email = person.Email,
                     PersonID = person.PersonID,
@@ -74,7 +74,7 @@ namespace ServiceContracts.Extensions
             return new PersonResponse()
             {
                 Address = person.Address,
-                CountryID = person.CountryID,
+                CountryID = country.CountryID,
                 DateOfBirth = person.DateOfBirth,
                 Email = person.Email,
                 PersonID = person.PersonID,
@@ -82,7 +82,7 @@ namespace ServiceContracts.Extensions
                 Gender = person.Gender,
                 PersonName = person.PersonName,
                 Age = person.DateOfBirth != null ? Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null,
-                Country = CountryName
+                Country = country.CountryName
             };
         }
         public static PersonResponse ToResponse(this PersonUpdateRequest request, string? CountryName = null)

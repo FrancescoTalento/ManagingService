@@ -1,3 +1,6 @@
+using ServiceContracts;
+using Services;
+
 namespace xTest1
 {
     public class Program
@@ -7,6 +10,8 @@ namespace xTest1
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
             
+            builder.Services.AddTransient<ICountriesService, CountryService>();
+            builder.Services.AddTransient<IPersonsService, PersonService>();
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment()) 

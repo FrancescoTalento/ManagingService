@@ -16,7 +16,7 @@ namespace CRUUDTest
         //Constructor
         public CountryServiceTest()
         {
-            _service = new CountryService();
+            _service = new CountryService(false);
         }
         
         

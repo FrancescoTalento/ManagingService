@@ -9,9 +9,36 @@ namespace Services
     {
         private readonly List<Country> _contriesList;
 
-        public CountryService()
+        public CountryService(bool initialize = true)
         {
             this._contriesList = new List<Country> { };
+            if (initialize) 
+            {
+                this._contriesList.Add(new Country {
+                    Id = Guid.Parse("6222957a-189c-44fd-b974-0d279ab9bd17"),
+                    CountryName = "USA"
+                });
+                this._contriesList.Add(new Country {
+                    Id = Guid.Parse("a0f9a66f-0896-4f88-aaac-3d43e031f281"),
+                    CountryName = "UK"
+                });
+                this._contriesList.Add(new Country {
+                    Id = Guid.Parse("17df7fd8-3645-4e59-96ce-44aba5919808"),
+                    CountryName = "Italy"
+                });
+                this._contriesList.Add(new Country {
+                    Id = Guid.Parse("ad852a33-4100-4d4d-83a9-73c26308355d"),
+                    CountryName = "India"
+                });
+                this._contriesList.Add(new Country {
+                    Id = Guid.Parse("bd930371-8859-44ce-9f27-b1729fd48b09"),
+                    CountryName = "Australia"
+                });
+                this._contriesList.Add(new Country {
+                    Id = Guid.Parse("ffca6bfd-6748-41ea-9625-b8c5dc9d546e"),
+                    CountryName = "Brazil"
+                });
+            }
         }
 
         public CountryResponse AddEntity(CountryAddRequest? request)

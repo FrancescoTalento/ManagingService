@@ -24,8 +24,8 @@ namespace CRUUDTest
 
         public PersonServiceTest(ITestOutputHelper testOutputHelper)
         {
-            this._service = new PersonService();
-            this._countryService = new CountryService();
+            this._service = new PersonService(false);
+            this._countryService = new CountryService(false);
             this._testOutputHelper = testOutputHelper;
         }
 
