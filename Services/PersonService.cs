@@ -184,16 +184,39 @@ namespace Services
         }
 
 
-        public List<PersonResponse> GetFilteredEntity(params Func<Person, bool>[] predicate)
+        public List<PersonResponse> GetFilteredEntity(string propName, string filterValue)
         {
-            var filteresList = this._personList;
-            
-            foreach (var filter in predicate)
+            Func<Person, bool> predicate;
+            if (propName.Equals("Age",StringComparison.OrdinalIgnoreCase))
             {
-                    filteresList = filteresList.Where(p => p!= null && filter(p)).ToList();
+                if (!int.TryParse(filterValue, out var age))
+                { return new List<PersonResponse>(); }
+
+                string targetYear = (DateTime.Now.Year - age).ToString();
+
+                predicate = FilterHelper.MakePredicate<Person>(nameof(Person.DateOfBirth),targetYear);
+            }
+            else if (propName.Equals("Country"))
+            {
+                var country = this._countriesService.GetEntityByName(filterValue);
+                if (country == null) return new List<PersonResponse>();
+                predicate = FilterHelper.MakePredicate<Person>(nameof(Person.CountryID), country.CountryID.ToString());
+            }
+            else
+            {
+                predicate = FilterHelper.MakePredicate<Person>(propName, filterValue);
             }
 
-            return filteresList.Select(p => p.ToResponse()).ToList();
+
+            var filteresList = this._personList.Where(p => p!= null && predicate(p));  
+          
+
+            return filteresList
+                .Select(
+                    p => p.ToResponse(
+                        this._countriesService.GetEntityById(p.CountryID))
+                    )
+                .ToList();
         }
 
 

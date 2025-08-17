@@ -36,17 +36,30 @@ namespace ServiceContracts
         PersonResponse? GetEntityById(Guid? personId);
 
         /// <summary>
-        /// Retrieves all <see cref="PersonResponse"/> objects that satisfy the specified filter criteria.
+        /// Retrieves all <see cref="PersonResponse"/> objects that match a filter
+        /// applied to a specified property.
         /// </summary>
-        /// <param name="predicate">
-        /// One or more delegate functions (<see cref="Func{Person, Boolean}"/>) used to filter the results.
-        /// All predicates are applied sequentially, and only entities matching all conditions will be returned.
+        /// <param name="propName">
+        /// The name of the property (from <see cref="Person"/> / <see cref="PersonResponse"/>) 
+        /// to filter by. Matching is case-insensitive.
+        /// </param>
+        /// <param name="filterValue">
+        /// The value to compare against the property's value. The comparison logic depends on
+        /// the property type:
+        /// <list type="bullet">
+        ///   <item><description><b>string</b>: case-insensitive substring match.</description></item>
+        ///   <item><description><b>DateTime</b>: formatted as <c>dd MMM yyyy</c> and matched by substring.</description></item>
+        ///   <item><description><b>bool</b>: supports true/false, 1/0, yes/no, sim/não.</description></item>
+        ///   <item><description><b>Guid</b>: exact match if parsable; otherwise substring of string representation.</description></item>
+        ///   <item><description><b>Numeric types</b>: compared by value (after parsing).</description></item>
+        /// </list>
         /// </param>
         /// <returns>
-        /// A list of <see cref="PersonResponse"/> instances that match the provided filter predicates.
-        /// If no predicates are provided, all persons will be returned.
+        /// A list of <see cref="PersonResponse"/> instances whose property values
+        /// match the specified criteria. If <paramref name="propName"/> or 
+        /// <paramref name="filterValue"/> is null or empty, all persons will be returned.
         /// </returns>
-        List<PersonResponse> GetFilteredEntity(params Func<Person, bool>[] predicate);
+        List<PersonResponse> GetFilteredEntity(string propName, string filterValue);
 
 
         /// <summary>

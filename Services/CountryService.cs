@@ -72,6 +72,16 @@ namespace Services
  
         }
 
+        public CountryResponse? GetEntityByName(string name)
+        {
+            if (string.IsNullOrEmpty(name)) throw new ArgumentNullException();
+
+            return _contriesList.FirstOrDefault(
+                c => c.CountryName!= null &&
+                c.CountryName.Equals(name,StringComparison.OrdinalIgnoreCase))?
+                .ToResponse();
+        }
+
         public CountryResponse? GetEntityById(Guid? countryId)
         {
 

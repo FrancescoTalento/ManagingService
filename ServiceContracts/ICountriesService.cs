@@ -29,5 +29,8 @@ namespace ServiceContracts
         /// <param name="countryId">Country Id (guid) to search</param>
         /// <returns>Matching country as CountryResponse object</returns>
         CountryResponse? GetEntityById(Guid? countryId);
+
+
+        CountryResponse? GetEntityByName(string name);
     }
 }

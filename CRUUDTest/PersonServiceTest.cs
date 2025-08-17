@@ -239,7 +239,7 @@ namespace CRUUDTest
 
 
             //Act
-            List<PersonResponse> personResponsesListActual = this._service.GetFilteredEntity(p => p.PersonName.Contains("", StringComparison.OrdinalIgnoreCase));
+            List<PersonResponse> personResponsesListActual = this._service.GetFilteredEntity(nameof(Person.PersonName),"");
 
             //Assert
 
@@ -272,7 +272,7 @@ namespace CRUUDTest
             personResponsesListExpected = personResponsesListExpected.Where(p => p.PersonName != null && p.PersonName.Contains("ma",StringComparison.OrdinalIgnoreCase)).Select(p => p).ToList();
 
             //Act
-            List<PersonResponse> personResponsesListActual = this._service.GetFilteredEntity(p => p.PersonName.Contains("ma",StringComparison.OrdinalIgnoreCase));
+            List<PersonResponse> personResponsesListActual = this._service.GetFilteredEntity(nameof(Person.PersonName), "ma");
 
             foreach (var person in personResponsesListExpected)
             {
@@ -310,7 +310,7 @@ namespace CRUUDTest
             List<PersonResponse> personResponsesListExpected = this.CreatePersonDataForTest();
 
             //Act
-            List<PersonResponse> sortedPersonResponsesListActual = this._service.GetSortedEntities(personResponsesListExpected, p => p.PersonName,SortOrderOptions.ASC);
+            List<PersonResponse> sortedPersonResponsesListActual = this._service.GetSortedEntities(personResponsesListExpected, p => typeof(PersonResponse).GetProperty(nameof(PersonResponse.PersonName)).GetValue(p),SortOrderOptions.ASC);
 
             //Assert
             List<PersonResponse> sortesPersonResponseListExpected = personResponsesListExpected.OrderBy(p => p.PersonName, Comparer<string>.Default.NullsLast()).ToList();
