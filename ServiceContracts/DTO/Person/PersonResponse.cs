@@ -22,7 +22,10 @@ namespace ServiceContracts.DTO.Person
         [Display(Name ="Date of Birth")]
         public DateTime? DateOfBirth { get; set; }
         
+        public double? Age { get; set; }
+        
         public string? Gender { get; set; }
+        
         public Guid? CountryID { get; set; }
         
         public string? Country { get; set; }
@@ -32,7 +35,6 @@ namespace ServiceContracts.DTO.Person
         [Display(Name ="Receive News Letters")]
         public bool ReceiveNewsLetters { get; set; }
         
-        public double? Age { get; set; }
 
     }
 }

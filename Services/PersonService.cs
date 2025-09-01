@@ -152,8 +152,8 @@ namespace Services
 
         public PersonResponse AddEntity(PersonAddRequest? request)
         {
-            ValidationHelper.ModelValidation(request);
-            if (string.IsNullOrEmpty(request.PersonName)) throw new ArgumentException(nameof(request.PersonName));
+            if (string.IsNullOrEmpty(request?.PersonName)) throw new ArgumentException(nameof(request.PersonName));
+            //ValidationHelper.ModelValidation(request);
 
             Person personToAdd = request.ToEntity();
             this._personList.Add(personToAdd);
@@ -235,9 +235,9 @@ namespace Services
                 case SortOrderOptions.DESC:
                     if (nullLast)
                     {
-                        return entities.OrderBy(keySelector, Comparer<TKey>.Default.NullsLast()).ToList();
+                        return entities.OrderByDescending(keySelector, Comparer<TKey>.Default.NullsLast()).ToList();
                     }
-                    return entities.OrderBy(keySelector, Comparer<TKey>.Default).ToList();
+                    return entities.OrderByDescending(keySelector, Comparer<TKey>.Default).ToList();
                     break;
                 default:
                     break;
@@ -250,10 +250,21 @@ namespace Services
             if(request is null) throw new ArgumentNullException(nameof(request));
             ValidationHelper.ModelValidation(request);
             
-            PersonResponse? originalPerson = this.GetEntityById(request.PersonId);
+            Person? originalPerson = this._personList.FirstOrDefault(p=> p.PersonID == request.PersonId);
             if (originalPerson is null) throw new KeyNotFoundException(nameof(request.PersonId));
 
+
+
+            originalPerson.PersonName = request.PersonName;
+            originalPerson.Email = request.Email;
+            originalPerson.DateOfBirth = request.DateOfBirth;
+            originalPerson.Gender = request.Gender.ToString();
+            originalPerson.CountryID = request.CountryID;
+            originalPerson.Address = request.Address;
+            originalPerson.ReceiveNewsLetters = request.ReceiveNewsLetters;
+
             CountryResponse? countryResponse = this._countriesService.GetEntityById(request.CountryID);
+
                 //?? throw new KeyNotFoundException(nameof(request.CountryID));
             return request.ToResponse();
         }
