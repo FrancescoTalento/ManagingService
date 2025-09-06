@@ -23,7 +23,7 @@ namespace ServiceContracts.Extensions
             return new CountryResponse()
             {
                 CountryName = country.CountryName,
-                CountryID = country.Id,
+                CountryID = country.CountryID,
             };
         }
     }

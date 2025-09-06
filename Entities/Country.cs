@@ -1,4 +1,6 @@
-﻿namespace Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities
 {
 
     /// <summary>
@@ -6,7 +8,10 @@
     /// </summary>
     public class Country
     {
-        public Guid Id { get; set; }
+        [Key]
+        public Guid CountryID { get; set; }
+
+        [StringLength(40)]
         public string? CountryName { get; set; }
 
 
